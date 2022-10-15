@@ -136,7 +136,10 @@ export default {
         .post("https://api.solodata.es/auth", json)
         .then((data) => {
           if (data.data.status == "ok") {
-            console.log("Todo Correcto");
+            // Guardamos el token de autorizacion en una variable local , para no tener q loguearnos a cada rato
+            localStorage.token = data.data.result.token;
+            // redirigimos a la ruta de la vista que queremos mostrar
+            this.$router.push("dashboard");
           } else {
             this.error = true;
             this.error_msg = data.data.result.error_msg;
